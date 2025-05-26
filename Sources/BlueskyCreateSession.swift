@@ -11,4 +11,9 @@
 struct BlueskyCreateSession: Hashable, Codable {
     let identifier: String
     let password: String
+
+    init(credentials: BlueskyCredentials) {
+        self.identifier = credentials.email
+        self.password = credentials.password
+    }
 }

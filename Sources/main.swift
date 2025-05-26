@@ -11,16 +11,21 @@
 
 import Foundation
 
-let createSessionRequest = try URLRequest.blueskyCreateSession(
+let credentials = BlueskyCredentials(
     email: "",
     password: ""
 )
+let createSessionRequest = try URLRequest.blueskyCreateSession(credentials: credentials)
+let (sessionData, sessionResponse) = try await URLSession.shared.data(for: createSessionRequest)
+let session = try JSONDecoder().decode(BlueskySession.self, from: sessionData)
 
-print("Sending request...")
+print("Response: \(sessionResponse)")
+print("JSON: \(session)")
 
-let (data, response) = try await URLSession.shared.data(for: createSessionRequest)
+let post = BlueskyRecord(text: "Testing automation")
+let createPostRequest = try URLRequest.blueskyCreatePost(session: session, record: post)
+let (postData, postResponse) = try await URLSession.shared.data(for: createPostRequest)
+let postJSON = try JSONSerialization.jsonObject(with: postData)
 
-let blueskySession = try JSONDecoder().decode(BlueskySession.self, from: data)
-
-print("Response: \(response)")
-print("JSON: \(blueskySession)")
+print("Response: \(postResponse)")
+print("JSON: \(postJSON)")
