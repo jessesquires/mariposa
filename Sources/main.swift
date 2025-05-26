@@ -3,10 +3,22 @@
 //  GitHub
 //  https://github.com/jessesquires/mariposa
 //
-//  Copyright © 2024 Jesse Squires
+//  Copyright © 2025 Jesse Squires
 //  https://www.jessesquires.com
 //
 
 import Foundation
 
-print("hello mariposa")
+let createSessionRequest = try URLRequest.blueskyCreateSession(
+    email: "",
+    password: ""
+)
+
+print("Sending request...")
+
+let (data, response) = try await URLSession.shared.data(for: createSessionRequest)
+
+let blueskySession = try JSONDecoder().decode(BlueskySession.self, from: data)
+
+print("Response: \(response)")
+print("JSON: \(blueskySession)")

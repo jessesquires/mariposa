@@ -4,7 +4,7 @@
 //  GitHub
 //  https://github.com/jessesquires/mariposa
 //
-//  Copyright © 2024 Jesse Squires
+//  Copyright © 2025 Jesse Squires
 //  https://www.jessesquires.com
 //
 
