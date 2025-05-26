@@ -1,2 +1,3 @@
-# mariposa
-Automate (partially) posting RSS feed to Bluesky
+# mariposa 🦋
+
+*Automate (partially) posting RSS feed to Bluesky*
