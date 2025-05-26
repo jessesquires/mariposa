@@ -1,11 +1,14 @@
 // swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
+//
+//  Created by Jesse Squires.
+//  https://www.jessesquires.com
+//
 //  GitHub
 //  https://github.com/jessesquires/mariposa
 //
-//  Copyright © 2025 Jesse Squires
-//  https://www.jessesquires.com
+//  Copyright © 2025-present Jesse Squires
 //
 
 import PackageDescription
