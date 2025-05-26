@@ -18,4 +18,9 @@ struct BlueskyRecord: Hashable, Codable {
         self.text = text
         self.createdAt = Date.now.ISO8601Format()
     }
+
+    init(jsonFeedItem post: JSONFeedItem) {
+        let text = "\(post.title)\n\n\(post.url)"
+        self.init(text: text)
+    }
 }
