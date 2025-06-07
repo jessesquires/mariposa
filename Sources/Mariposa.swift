@@ -33,7 +33,7 @@ struct Mariposa: AsyncParsableCommand {
 
     mutating func run() async throws {
         guard let latestPost = self.feed.latest else {
-            print("\n🚫 No posts found in feed.")
+            print("\n🚫 No posts found in feed")
             return
         }
 
@@ -47,14 +47,14 @@ struct Mariposa: AsyncParsableCommand {
 
         print("➡️  Continue? (y/N):", terminator: " ")
         guard let shouldContinue = readLine(), shouldContinue.isYes else {
-            print("⚠️  Aborted.")
+            print("⚠️  Aborted")
             return
         }
 
         try await self.shareToBluesky(latestPost: latestPost)
         try await self.shareToMastodon(latestPost: latestPost)
 
-        print("\n🎉 Finished.")
+        print("\n🎉 Finished")
     }
 
     func shareToBluesky(latestPost: JSONFeedItem) async throws {
