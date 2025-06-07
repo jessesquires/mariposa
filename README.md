@@ -1,5 +1,7 @@
 # mariposa 🦋
 
+[![CI](https://github.com/jessesquires/mariposa/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/mariposa/actions/workflows/ci.yml)
+
 *A command-line tool to (partially) automate posting JSON feeds to Bluesky and Mastodon*
 
 ## About
