@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct JSONFeedItem: Hashable, Codable {
-    let title: String
-    let url: URL
+public struct JSONFeedItem: Hashable, Codable {
+    public let title: String
+    public let url: URL
 }

@@ -10,10 +10,10 @@
 
 import Foundation
 
-struct BlueskyClient: Hashable {
-    let credentials: BlueskyCredentials
+public struct BlueskyClient: Hashable {
+    public let credentials: BlueskyCredentials
 
-    func share(feedItem: JSONFeedItem) async throws -> BlueskyResult? {
+    public func share(feedItem: JSONFeedItem) async throws -> BlueskyResult? {
         let createSessionRequest = try URLRequest.blueskyCreateSession(credentials: self.credentials)
         let (sessionData, sessionResponse) = try await URLSession.shared.data(for: createSessionRequest)
         let session = try JSONDecoder().decode(BlueskySession.self, from: sessionData)

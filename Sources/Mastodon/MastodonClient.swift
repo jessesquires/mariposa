@@ -10,10 +10,10 @@
 
 import Foundation
 
-struct MastodonClient: Hashable {
-    let credentials: MastodonCredentials
+public struct MastodonClient: Hashable {
+    public let credentials: MastodonCredentials
 
-    func share(feedItem: JSONFeedItem) async throws -> MastodonResult? {
+    public func share(feedItem: JSONFeedItem) async throws -> MastodonResult? {
         let status = MastodonStatus(jsonFeedItem: feedItem)
         let request = try URLRequest.mastodonCreatePost(credentials: self.credentials, status: status)
         let (data, response) = try await URLSession.shared.data(for: request)

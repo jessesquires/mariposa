@@ -10,18 +10,18 @@
 
 import Foundation
 
-struct MastodonStatus: Hashable {
-    let text: String
+public struct MastodonStatus: Hashable {
+    public let text: String
 
-    var httpBody: Data {
+    public var httpBody: Data {
         Data(self.text.utf8)
     }
 
-    init(text: String) {
+    public init(text: String) {
         self.text = text
     }
 
-    init(jsonFeedItem post: JSONFeedItem) {
+    public init(jsonFeedItem post: JSONFeedItem) {
         let text = """
         status=\(post.title)
 

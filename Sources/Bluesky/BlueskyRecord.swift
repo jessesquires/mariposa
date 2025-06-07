@@ -10,18 +10,18 @@
 
 import Foundation
 
-struct BlueskyRecord: Hashable, Codable {
-    let text: String
-    let createdAt: String
-    var facets: [BlueskyFacet]
+public struct BlueskyRecord: Hashable, Codable {
+    public let text: String
+    public let createdAt: String
+    public var facets: [BlueskyFacet]
 
-    init(text: String) {
+    public init(text: String) {
         self.text = text
         self.createdAt = Date.now.ISO8601Format()
         self.facets = []
     }
 
-    init(jsonFeedItem post: JSONFeedItem) {
+    public init(jsonFeedItem post: JSONFeedItem) {
         let text = "\(post.title)\n\n\(post.url)"
         self.init(text: text)
 

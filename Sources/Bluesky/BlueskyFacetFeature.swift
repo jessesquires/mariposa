@@ -10,9 +10,9 @@
 
 import Foundation
 
-struct BlueskyFacetFeature: Hashable, Codable {
-    let uri: String
-    let type: String
+public struct BlueskyFacetFeature: Hashable, Codable {
+    public let uri: String
+    public let type: String
 
     enum CodingKeys: String, CodingKey {
         case uri

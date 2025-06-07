@@ -10,6 +10,6 @@
 
 import Foundation
 
-struct JSONFeed: Hashable, Codable {
-    let items: [JSONFeedItem]
+public struct JSONFeed: Hashable, Codable {
+    public let items: [JSONFeedItem]
 }

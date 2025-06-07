@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct BlueskyCommit: Hashable, Codable {
-    let cid: String
-    let rev: String
+public struct BlueskyCommit: Hashable, Codable, Sendable {
+    public let cid: String
+    public let rev: String
 }

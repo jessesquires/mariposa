@@ -10,10 +10,10 @@
 
 import Foundation
 
-struct BlueskySession: Hashable, Codable {
-    let accessJwt: String
-    let refreshJwt: String
-    let email: String
-    let handle: String
-    let did: String
+public struct BlueskySession: Hashable, Codable, Sendable {
+    public let accessJwt: String
+    public let refreshJwt: String
+    public let email: String
+    public let handle: String
+    public let did: String
 }

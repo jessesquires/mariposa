@@ -10,9 +10,9 @@
 
 import Foundation
 
-struct BlueskyRecordCreated: Hashable, Codable {
-    let cid: String
-    let commit: BlueskyCommit
-    let uri: String
-    let validationStatus: String
+public struct BlueskyRecordCreated: Hashable, Codable, Sendable {
+    public let cid: String
+    public let commit: BlueskyCommit
+    public let uri: String
+    public let validationStatus: String
 }

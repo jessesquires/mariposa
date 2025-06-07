@@ -10,10 +10,10 @@
 
 import Foundation
 
-struct MastodonResult: Hashable {
-    let data: Data
+public struct MastodonResult: Hashable, Sendable {
+    public let data: Data
 
-    var json: Any? {
+    public var json: Any? {
         try? JSONSerialization.jsonObject(with: self.data)
     }
 }

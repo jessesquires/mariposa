@@ -11,7 +11,7 @@
 import Foundation
 
 extension URLRequest {
-    static func blueskyCreateSession(credentials: BlueskyCredentials) throws -> Self {
+    public static func blueskyCreateSession(credentials: BlueskyCredentials) throws -> Self {
         let url = URL(string: "https://bsky.social/xrpc/com.atproto.server.createSession")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -21,7 +21,7 @@ extension URLRequest {
         return request
     }
 
-    static func blueskyCreatePost(session: BlueskySession, record: BlueskyRecord) throws -> Self {
+    public static func blueskyCreatePost(session: BlueskySession, record: BlueskyRecord) throws -> Self {
         let url = URL(string: "https://bsky.social/xrpc/com.atproto.repo.createRecord")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

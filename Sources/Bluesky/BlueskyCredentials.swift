@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct BlueskyCredentials: Hashable, Codable {
-    let email: String
-    let password: String
+public struct BlueskyCredentials: Hashable, Codable {
+    public let email: String
+    public let password: String
 }

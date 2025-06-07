@@ -10,13 +10,13 @@
 
 import Foundation
 
-struct BlueskyPost: Hashable, Codable {
-    let repo: String
-    let collection: String
-    let validate: Bool
-    let record: BlueskyRecord
+public struct BlueskyPost: Hashable, Codable {
+    public let repo: String
+    public let collection: String
+    public let validate: Bool
+    public let record: BlueskyRecord
 
-    init(session: BlueskySession, record: BlueskyRecord) {
+    public init(session: BlueskySession, record: BlueskyRecord) {
         self.repo = session.did
         self.collection = "app.bsky.feed.post"
         self.validate = true

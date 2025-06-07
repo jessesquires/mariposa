@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct BlueskyFacet: Hashable, Codable {
-    let features: [BlueskyFacetFeature]
-    let index: BlueskyIndex
+public struct BlueskyFacet: Hashable, Codable {
+    public let features: [BlueskyFacetFeature]
+    public let index: BlueskyIndex
 }

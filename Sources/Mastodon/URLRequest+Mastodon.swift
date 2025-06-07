@@ -11,7 +11,7 @@
 import Foundation
 
 extension URLRequest {
-    static func mastodonCreatePost(credentials: MastodonCredentials, status: MastodonStatus) throws -> Self {
+    public static func mastodonCreatePost(credentials: MastodonCredentials, status: MastodonStatus) throws -> Self {
         var request = URLRequest(url: credentials.statusesURL)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")

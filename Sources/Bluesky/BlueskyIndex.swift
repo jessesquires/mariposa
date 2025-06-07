@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct BlueskyIndex: Hashable, Codable {
-    let byteStart: Int
-    let byteEnd: Int
+public struct BlueskyIndex: Hashable, Codable {
+    public let byteStart: Int
+    public let byteEnd: Int
 }

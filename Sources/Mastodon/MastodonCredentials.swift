@@ -10,11 +10,11 @@
 
 import Foundation
 
-struct MastodonCredentials: Hashable {
-    let instanceName: String
-    let accessToken: String
+public struct MastodonCredentials: Hashable {
+    public let instanceName: String
+    public let accessToken: String
 
-    var statusesURL: URL {
+    public var statusesURL: URL {
         URL(string: "https://\(self.instanceName)/api/v1/statuses")!
     }
 }

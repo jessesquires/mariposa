@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct BlueskyResult: Hashable {
-    let session: BlueskySession
-    let record: BlueskyRecordCreated
+public struct BlueskyResult: Hashable, Sendable {
+    public let session: BlueskySession
+    public let record: BlueskyRecordCreated
 }

@@ -8,11 +8,11 @@
 //  Copyright © 2025-present Jesse Squires
 //
 
-struct BlueskyCreateSession: Hashable, Codable {
-    let identifier: String
-    let password: String
+public struct BlueskyCreateSession: Hashable, Codable {
+    public let identifier: String
+    public let password: String
 
-    init(credentials: BlueskyCredentials) {
+    public init(credentials: BlueskyCredentials) {
         self.identifier = credentials.email
         self.password = credentials.password
     }
