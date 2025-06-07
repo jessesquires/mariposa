@@ -33,29 +33,36 @@ struct Mariposa: AsyncParsableCommand {
 
     mutating func run() async throws {
         let config = try MariposaConfig(filePath: self.config)
-        print("\nUsing config: \(self.config.relativePath)")
-
         let feed = JSONFeedClient(filePath: self.feed)
-        print("Using feed: \(self.feed.relativePath)")
 
         let latestPost = try feed.latestPost()!
         print("\n\(latestPost.preview)\n")
         print("➡️  Continue? (y/N)")
 
-        guard let answer = readLine(), answer.isYes else {
-            print("🛑 Aborted.\n")
+        guard let shouldContinue = readLine(), shouldContinue.isYes else {
+            print("⚠️  Aborted.\n")
             return
         }
 
-        print("answer: \(String(describing: answer))")
-        print("config: \(config)")
+        print("\nPosting to Bluesky...")
+        let bluesky = BlueskyClient(credentials: config.bluesky)
+        guard let blueskyResult = try await bluesky.share(feedItem: latestPost) else {
+            print("🚫 Bluesky failed.")
+            return
+        }
+        print("✅ Bluesky succeeded.")
+        print("https://bsky.app/profile/\(blueskyResult.session.handle)")
 
-//        let bluesky = BlueskyClient(credentials: config.bluesky)
-//        let blueskyResult = try await bluesky.share(feedItem: latestPost)
-//        print(blueskyResult ?? "failed")
-//        
-//        let mastodon = MastodonClient(credentials: config.mastodon)
-//        let mastodonResult = try await mastodon.share(feedItem: latestPost)
-//        print(mastodonResult?.json ?? "failed")
+        print("\nPosting to Mastodon...")
+        let mastodon = MastodonClient(credentials: config.mastodon)
+        guard let mastodonResult = try await mastodon.share(feedItem: latestPost) else {
+            print("🚫 Mastodon failed.")
+            return
+        }
+        print("✅ Mastodon succeeded.")
+        let _ = mastodonResult
+        // TODO:
+
+        print("\n🎉 Finished.\n")
     }
 }
