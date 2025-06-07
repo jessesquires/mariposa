@@ -21,9 +21,15 @@ let package = Package(
     products: [
         .executable(name: "mariposa", targets: ["Mariposa"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
+    ],
     targets: [
         .executableTarget(
             name: "Mariposa",
+            dependencies: [
+                .product(name: "ArgumentParser", package: "swift-argument-parser"),
+            ],
             path: "Sources"
         )
     ],
