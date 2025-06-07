@@ -32,12 +32,13 @@ struct Mariposa: AsyncParsableCommand {
     var feed: URL
 
     mutating func run() async throws {
+        let config = try MariposaConfig(filePath: self.config)
         print("\nUsing config: \(self.config.relativePath)")
+
+        let feed = JSONFeedClient(filePath: self.feed)
         print("Using feed: \(self.feed.relativePath)")
 
-        let jsonFeedClient = JSONFeedClient(filePath: self.feed)
-        let latestPost = try jsonFeedClient.latestPost()!
-
+        let latestPost = try feed.latestPost()!
         print("\n\(latestPost.preview)\n")
         print("➡️  Continue? (y/N)")
 
@@ -47,9 +48,8 @@ struct Mariposa: AsyncParsableCommand {
         }
 
         print("answer: \(String(describing: answer))")
+        print("config: \(config)")
 
-//        let config = try MariposaConfig(filePath: self.config)
-//
 //        let bluesky = BlueskyClient(credentials: config.bluesky)
 //        let blueskyResult = try await bluesky.share(feedItem: latestPost)
 //        print(blueskyResult ?? "failed")
