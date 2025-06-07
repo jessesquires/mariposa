@@ -13,7 +13,9 @@ import ArgumentParser
 
 @main
 struct Mariposa: AsyncParsableCommand {
-    static let configuration = CommandConfiguration(abstract: "Automate posting JSON feeds to Bluesky and Mastodon.")
+    static let configuration = CommandConfiguration(
+        abstract: "Automate posting JSON feeds to Bluesky and Mastodon."
+    )
 
     @Option(
         name: .shortAndLong,
@@ -35,19 +37,25 @@ struct Mariposa: AsyncParsableCommand {
     )
     var verbose = false
 
-
     mutating func run() async throws {
-        print("\nConfig: \(self.config)")
-        print("\nFeed: \(self.feed)")
+        print("\nUsing config: \(self.config.relativePath)")
+        print("\nUsing feed: \(self.feed.relativePath)")
 
         let config = try MariposaConfig(filePath: self.config)
         print("\n\(config)")
 
         let jsonFeedClient = JSONFeedClient(filePath: self.feed)
         let latestPost = try jsonFeedClient.latestPost()!
-        print("\n\(latestPost)")
 
-        print("\n")
+        print("\n\(latestPost.preview)\n")
+        print("Continue? (y/N)")
+
+        guard let answer = readLine(), answer.isYes else {
+            print("Aborted.")
+            return
+        }
+
+        print("answer: \(String(describing: answer))")
 
         //let bluesky = BlueskyClient(credentials: config.bluesky)
         //let blueskyResult = try await bluesky.share(feedItem: latestPost)
