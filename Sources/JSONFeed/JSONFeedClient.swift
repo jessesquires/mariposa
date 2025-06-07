@@ -11,11 +11,10 @@
 import Foundation
 
 public struct JSONFeedClient: Hashable {
-    public let filePath: String
+    public let filePath: URL
 
     public func loadFeed() throws -> JSONFeed {
-        let url = URL(filePath: self.filePath)
-        let data = try Data(contentsOf: url)
+        let data = try Data(contentsOf: self.filePath)
         return try JSONDecoder().decode(JSONFeed.self, from: data)
     }
 

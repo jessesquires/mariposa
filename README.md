@@ -8,15 +8,30 @@ The goal of this tool is to replace a service like [IFTTT](https://ifttt.com) or
 
 This is a tool I wrote for my own purposes. It's a (partially) automated way for me to share new blog posts to Bluesky. I say "partially" because you need to run it manually, although with a small amount of effort you could automate it fully. (I don't need that for my current usage.) Feel free to adapt and use as desired. I've made it somewhat modular, but features are limited to only what I currently need — which is creating a post with my latest blog post title and url link.
 
-## How It Works 
+## How It Works
 
 The script works by reading a generated JSON feed and then posting the latest entry to Bluesky. It shares only the blog post title and url.
 
 ## Usage
 
-1. Provide your Bluesky credentials: email and password. I suggest creating an [app password](https://bsky.app/settings/app-passwords).
-1. Provide the path to your json feed. e.g. `~/my_feed.json`.
-1. Run the tool.
+1. Create `config.yml` with your credentials:
+
+```yaml
+bluesky:
+  email: "your@email.com"
+  password: "your-app-password"
+
+mastodon:
+  instanceName: "mastodon.social"
+  accessToken: "your-access-token"
+```
+1. Bluesky: I suggest creating an [app password](https://bsky.app/settings/app-passwords).
+1. Mastodon: Create [an application](https://mastodon.social/settings/applications). The only scope needed is `write:statuses`.
+1. Run the package:
+
+```bash
+swift run mariposa --config config.yml --feed feed.json
+```
 
 ## Project Goals and Non-Goals
 
