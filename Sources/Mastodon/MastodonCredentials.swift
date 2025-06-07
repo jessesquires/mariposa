@@ -10,7 +10,7 @@
 
 import Foundation
 
-public struct MastodonCredentials: Hashable {
+public struct MastodonCredentials: Hashable, Codable {
     public let instanceName: String
     public let accessToken: String
 

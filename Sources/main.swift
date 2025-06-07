@@ -11,22 +11,17 @@
 
 import Foundation
 
+let config = try MariposaConfig(configFilePath: "config.json")
+print(config)
+
 let jsonFeedClient = JSONFeedClient(filePath: "feed.json")
 let latestPost = try jsonFeedClient.latestPost()!
 print(latestPost)
 
-let blueskyCredentials = BlueskyCredentials(
-    email: "email",
-    password: "password"
-)
-let bluesky = BlueskyClient(credentials: blueskyCredentials)
+let bluesky = BlueskyClient(credentials: config.bluesky)
 let blueskyResult = try await bluesky.share(feedItem: latestPost)
 print(blueskyResult ?? "failed")
 
-let mastodonCredentials = MastodonCredentials(
-    instanceName: "mastodon.social",
-    accessToken: "token"
-)
-let mastodon = MastodonClient(credentials: mastodonCredentials)
+let mastodon = MastodonClient(credentials: config.mastodon)
 let mastodonResult = try await mastodon.share(feedItem: latestPost)
 print(mastodonResult?.json ?? "failed")
