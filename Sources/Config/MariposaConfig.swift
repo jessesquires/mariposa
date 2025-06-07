@@ -21,8 +21,8 @@ public struct MariposaConfig: Hashable, Codable {
         self.mastodon = mastodon
     }
 
-    public init(configFilePath: String) throws {
-        let url = URL(filePath: configFilePath)
+    public init(filePath: String) throws {
+        let url = URL(filePath: filePath)
         let data = try Data(contentsOf: url)
         self = try YAMLDecoder().decode(Self.self, from: data)
     }
