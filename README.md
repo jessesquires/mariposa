@@ -14,7 +14,7 @@ The script works by reading a generated JSON feed and then posting the latest en
 
 ## Usage
 
-1. Create `config.yml` with your credentials:
+#### 1. Create a `config.yml` with your credentials
 
 ```yaml
 bluesky:
@@ -25,12 +25,15 @@ mastodon:
   instanceName: "mastodon.social"
   accessToken: "your-access-token"
 ```
-1. Bluesky: I suggest creating an [app password](https://bsky.app/settings/app-passwords).
-1. Mastodon: Create [an application](https://mastodon.social/settings/applications). The only scope needed is `write:statuses`.
-1. Run the package:
+
+For Bluesky: create an [app password](https://bsky.app/settings/app-passwords).
+
+For Mastodon: create [an application](https://mastodon.social/settings/applications) with the `write:statuses` scope.
+
+#### 2. Run
 
 ```bash
-swift run mariposa --config config.yml --feed feed.json
+swift run mariposa --config path/to/your/config.yml --feed path/to/your/feed.json
 ```
 
 ## Project Goals and Non-Goals
