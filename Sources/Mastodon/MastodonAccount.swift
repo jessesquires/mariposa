@@ -10,8 +10,8 @@
 
 import Foundation
 
-public struct MastodonResult: Hashable, Codable {
-    public let account: MastodonAccount
+public struct MastodonAccount: Hashable, Codable {
     public let uri: String
     public let url: String
+    public let username: String
 }

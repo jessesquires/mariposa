@@ -10,8 +10,10 @@
 
 import Foundation
 
-public struct MastodonResult: Hashable, Codable {
-    public let account: MastodonAccount
-    public let uri: String
-    public let url: String
+func printSuccess() {
+    print("success ✅")
+}
+
+func printFailure() {
+    print("failure 🚫")
 }

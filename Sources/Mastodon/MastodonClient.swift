@@ -20,6 +20,7 @@ public struct MastodonClient: Hashable {
         if !response.isSuccess {
             return nil
         }
-        return MastodonResult(data: data)
+
+        return try JSONDecoder().decode(MastodonResult.self, from: data)
     }
 }

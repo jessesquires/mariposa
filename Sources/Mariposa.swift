@@ -20,49 +20,62 @@ struct Mariposa: AsyncParsableCommand {
     @Option(
         name: .shortAndLong,
         help: "YAML configuration file.",
-        transform: URL.init(fileURLWithPath:)
+        transform: MariposaConfig.init(filePath:)
     )
-    var config: URL
+    var config: MariposaConfig
 
     @Option(
         name: .shortAndLong,
         help: "JSON feed file.",
-        transform: URL.init(fileURLWithPath:)
+        transform: JSONFeedClient.init(filePath:)
     )
-    var feed: URL
+    var feed: JSONFeedClient
 
     mutating func run() async throws {
-        let config = try MariposaConfig(filePath: self.config)
-        let feed = JSONFeedClient(filePath: self.feed)
+        guard let latestPost = try self.feed.latestPost() else {
+            print("\n🚫 No posts found in feed: \(self.feed.filePath)")
+            return
+        }
 
-        let latestPost = try feed.latestPost()!
-        print("\n\(latestPost.preview)\n")
-        print("➡️  Continue? (y/N)")
+        print("""
+        
+        👀 Preview:
+            \(latestPost.title)
+            \(latestPost.url)
+        
+        """)
 
+        print("➡️  Continue? (y/N):", terminator: " ")
         guard let shouldContinue = readLine(), shouldContinue.isYes else {
-            print("⚠️  Aborted.\n")
+            print("⚠️  Aborted.")
             return
         }
 
-        print("\nPosting to Bluesky...")
-        let bluesky = BlueskyClient(credentials: config.bluesky)
+        try await self.shareToBluesky(latestPost: latestPost)
+        try await self.shareToMastodon(latestPost: latestPost)
+
+        print("\n🎉 Finished.")
+    }
+
+    func shareToBluesky(latestPost: JSONFeedItem) async throws {
+        print("\nPosting to Bluesky...", terminator: " ")
+        let bluesky = BlueskyClient(credentials: self.config.bluesky)
         guard let blueskyResult = try await bluesky.share(feedItem: latestPost) else {
-            print("🚫 Bluesky failed.")
+            printFailure()
             return
         }
-        print("✅ Bluesky succeeded.")
-        print("https://bsky.app/profile/\(blueskyResult.session.handle)")
+        printSuccess()
+        print(blueskyResult.profileURL)
+    }
 
-        print("\nPosting to Mastodon...")
-        let mastodon = MastodonClient(credentials: config.mastodon)
+    func shareToMastodon(latestPost: JSONFeedItem) async throws {
+        print("\nPosting to Mastodon...", terminator: " ")
+        let mastodon = MastodonClient(credentials: self.config.mastodon)
         guard let mastodonResult = try await mastodon.share(feedItem: latestPost) else {
-            print("🚫 Mastodon failed.")
+            printFailure()
             return
         }
-        print("✅ Mastodon succeeded.")
-        let _ = mastodonResult
-        // TODO:
-
-        print("\n🎉 Finished.\n")
+        printSuccess()
+        print(mastodonResult.url)
     }
 }

@@ -13,4 +13,8 @@ import Foundation
 public struct BlueskyResult: Hashable, Sendable {
     public let session: BlueskySession
     public let record: BlueskyRecordCreated
+
+    public var profileURL: String {
+        "https://bsky.app/profile/\(self.session.handle)"
+    }
 }
