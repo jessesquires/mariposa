@@ -11,7 +11,7 @@
 
 import Foundation
 
-let config = try MariposaConfig(configFilePath: "config.json")
+let config = try MariposaConfig(configFilePath: "config.yml")
 print(config)
 
 let jsonFeedClient = JSONFeedClient(filePath: "feed.json")

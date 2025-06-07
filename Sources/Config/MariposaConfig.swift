@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import Yams
 
 public struct MariposaConfig: Hashable, Codable {
     public let bluesky: BlueskyCredentials
@@ -23,6 +24,6 @@ public struct MariposaConfig: Hashable, Codable {
     public init(configFilePath: String) throws {
         let url = URL(filePath: configFilePath)
         let data = try Data(contentsOf: url)
-        self = try JSONDecoder().decode(Self.self, from: data)
+        self = try YAMLDecoder().decode(Self.self, from: data)
     }
 }
