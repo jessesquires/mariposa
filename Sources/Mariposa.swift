@@ -27,13 +27,13 @@ struct Mariposa: AsyncParsableCommand {
     @Option(
         name: .shortAndLong,
         help: "JSON feed file.",
-        transform: JSONFeedClient.init(filePath:)
+        transform: JSONFeed.init(filePath:)
     )
-    var feed: JSONFeedClient
+    var feed: JSONFeed
 
     mutating func run() async throws {
-        guard let latestPost = try self.feed.latestPost() else {
-            print("\n🚫 No posts found in feed: \(self.feed.filePath)")
+        guard let latestPost = self.feed.latest else {
+            print("\n🚫 No posts found in feed.")
             return
         }
 
