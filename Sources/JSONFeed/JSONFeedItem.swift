@@ -18,7 +18,7 @@ public struct JSONFeedItem: Hashable, Codable {
         let count = max(self.title.count, self.url.absoluteString.count)
         let border = String(repeating: "*", count: count + 4)
         return """
-        Post Preview:
+        Preview:
         \(border)
         *   \(self.title)
         *
