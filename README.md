@@ -1,6 +1,6 @@
 # mariposa 🦋
 
-*Automate (partially) posting JSON feeds to Bluesky*
+*Automate (partially) posting JSON feeds to Bluesky and Mastodon*
 
 ## About
 
