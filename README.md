@@ -18,6 +18,10 @@ The script works by reading a generated JSON feed and then posting the latest en
 1. Provide the path to your json feed. e.g. `~/my_feed.json`.
 1. Run the tool.
 
+## Project Goals and Non-Goals
+
+As stated above, this project contains features and functionality very specific to my needs and use case. While I am open to reviewing pull requests that add additional features, please not that **it is an explicit non-goal to write fully fledged clients for Bluesky and Mastodon.**
+
 ## Contributing
 
 Interested in making contributions to this project? Please review the guides below.
