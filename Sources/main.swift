@@ -19,17 +19,7 @@ let credentials = BlueskyCredentials(
     email: "email",
     password: "password"
 )
-let createSessionRequest = try URLRequest.blueskyCreateSession(credentials: credentials)
-let (sessionData, sessionResponse) = try await URLSession.shared.data(for: createSessionRequest)
-let session = try JSONDecoder().decode(BlueskySession.self, from: sessionData)
+let bluesky = BlueskyClient(credentials: credentials)
+let result = try await bluesky.share(feedItem: latestPost)
 
-print("Response: \(sessionResponse)")
-print("JSON: \(session)")
-
-let post = BlueskyRecord(jsonFeedItem: latestPost)
-let createPostRequest = try URLRequest.blueskyCreatePost(session: session, record: post)
-let (postData, postResponse) = try await URLSession.shared.data(for: createPostRequest)
-let recordCreated = try JSONDecoder().decode(BlueskyRecordCreated.self, from: postData)
-
-print("Response: \(postResponse)")
-print("JSON: \(recordCreated)")
+print(result ?? "failed")
