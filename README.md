@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/jessesquires/mariposa/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/mariposa/actions/workflows/ci.yml)
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2Fmariposa%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/jessesquires/mariposa) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fjessesquires%2Fmariposa%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/jessesquires/mariposa)
+
 *A command-line tool to (partially) automate posting [JSON feeds](https://www.jsonfeed.org) to [Bluesky](https://bsky.app) and [Mastodon](https://mastodon.social)*
 
 ## About
