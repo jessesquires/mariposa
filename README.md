@@ -2,17 +2,23 @@
 
 [![CI](https://github.com/jessesquires/mariposa/actions/workflows/ci.yml/badge.svg)](https://github.com/jessesquires/mariposa/actions/workflows/ci.yml)
 
-*A command-line tool to (partially) automate posting JSON feeds to Bluesky and Mastodon*
+*A command-line tool to (partially) automate posting [JSON feeds](https://www.jsonfeed.org) to [Bluesky](https://bsky.app) and [Mastodon](https://mastodon.social)*
 
 ## About
 
-The goal of this tool is to replace a service like [IFTTT](https://ifttt.com) or [Zapier](https://zapier.com) to automatically post to Bluesky when I publish a new blog post. Currently, IFTTT has integrations for posting RSS feeds to Twitter and ([with some extra work](https://www.jessesquires.com/blog/2022/12/15/rss-to-mastodon/)) Mastodon — both of which I use. Currently, IFTTT does not provide an option for automating RSS to Bluesky.
+The goal of this tool is to replace services like [IFTTT](https://ifttt.com) or [Zapier](https://zapier.com) to automatically post to Bluesky and Mastodon whenever I publish a new blog post. 
 
-This is a tool I wrote for my own purposes. It's a (partially) automated way for me to share new blog posts to Bluesky. I say "partially" because you need to run it manually, although with a small amount of effort you could automate it fully. (I don't need that for my current usage.) Feel free to adapt and use as desired. I've made it somewhat modular, but features are limited to only what I currently need — which is creating a post with my latest blog post title and url link.
+This is a tool I wrote for my own purposes. It is **partially automated** because you need to run it manually, although you could probably automate it fully if desired. However, I do not need that for my current usage. Feel free to adapt and use as desired. I've made it modular, but features are **very limited** to only what I currently need.
+
+> [!NOTE]
+>
+> This project contains limited features and functionality very specific to my needs and use case. While I am open to reviewing pull requests that add additional features, please note that **it is an explicit non-goal to write fully fledged clients for Bluesky and Mastodon.**
 
 ## How It Works
 
-The script works by reading a generated JSON feed and then posting the latest entry to Bluesky. It shares only the blog post title and url.
+**Prerequisite:** presumably, you have a JSON feed for your blog. I use [Jekyll](https://jekyllrb.com) for my blog, which easily accommodates [generating a JSON feed](https://www.jessesquires.com/blog/2017/09/03/supporting-json-feed/).
+
+The tool reads a [JSON feed](https://www.jsonfeed.org) locally from disk, and then posts the latest entry to Bluesky and Mastodon. The text of the post includes only the blog post title and url.
 
 ## Usage
 
@@ -28,19 +34,17 @@ mastodon:
   accessToken: "your-access-token"
 ```
 
-For Bluesky: create an [app password](https://bsky.app/settings/app-passwords).
-
-For Mastodon: create [an application](https://mastodon.social/settings/applications) with the `write:statuses` scope.
+> [!IMPORTANT]
+> 
+> **For Bluesky:** create an [app password](https://bsky.app/settings/app-passwords). Do not use your login password.
+>
+> **For Mastodon:** create [an application](https://mastodon.social/settings/applications) with the `write:statuses` scope.
 
 #### 2. Run
 
 ```bash
 swift run mariposa --config path/to/your/config.yml --feed path/to/your/feed.json
 ```
-
-## Project Goals and Non-Goals
-
-As stated above, this project contains features and functionality very specific to my needs and use case. While I am open to reviewing pull requests that add additional features, please not that **it is an explicit non-goal to write fully fledged clients for Bluesky and Mastodon.**
 
 ## Contributing
 
@@ -57,7 +61,7 @@ Also consider [sponsoring this project](https://github.com/sponsors/jessesquires
 
 Created and maintained by [**Jesse Squires**](https://www.jessesquires.com).
 
-Many thanks to Manton Reece for [writing this blog post](https://www.manton.org/2023/04/29/getting-started-with.html), which helped me get started quickly.
+*Many thanks to Manton Reece for [writing this blog post](https://www.manton.org/2023/04/29/getting-started-with.html), which helped me get started quickly with the Bluesky API.*
 
 ## License
 
